@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-
+import atomPic from './assets/img/atom.jpg'
 function App() {
   return (
     <div className="App">
@@ -22,7 +22,7 @@ function App() {
         <p className="lead">Click on an image to earn points, but don't click on any more than once!</p>
       </div>
       <main className="container">
-      <div className="imgDiv"><img class="img" src="/assets/img/react.png" alt="react js logo"></img></div>
+      <div className="imgDiv"><img class="img" src={atomPic} alt="react js logo"></img></div>
       <div className="imgDiv"><img class="img" src="/assets/img/atom.png" alt="atom logo"></img></div>
       <div className="imgDiv"><img class="img" src="/assets/img/mongo.png" alt="monog logo"></img></div>
       <div className="imgDiv"><img class="img" src="/assets/img/nodejs-512.png" alt="nodejs logo"></img></div>

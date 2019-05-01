@@ -19,16 +19,25 @@ class App extends Component {
   //Whenever we write a function in ES6, we use the format:
   // functionName = (paramter or if we don't have a paramter, keep it blank) => { do stuff here}
   //greatestFunctionEver = () => {this.setState(...)}
-   // scoring function
+  // scoring function
   clicked = (id) => {
     console.log(id)
-    const shuffled = this.shuffleCards(this.state.logos);
-    this.setState({ score: this.state.yourScore + 2, logos: shuffled});
+     console.log(this.state.logos[id].clicked)
+     if(this.state.logos[id].clicked === false){
+       let preShuffledArray = [...this.state.logos]
+       preShuffledArray[id].clicked = true;
+    const shuffled = this.shuffleCards(preShuffledArray);
+    let newScore = this.state.yourScore + 1;
+    this.setState({ yourScore: newScore, logos: shuffled });
+     }else{
+       console.log("Lose")
+     }
+    
   }
 
   // check we haven't chosen img id
   // if/else has been chose endgame or add to score
-  
+
   // end of game reset function
   // (shuffle)
   shuffleCards = array => {
@@ -41,33 +50,32 @@ class App extends Component {
     return array;
   }
 
-  
- 
+
+
 
   render() {
     return (
 
       <Wrapper>
-        <Navbar></Navbar>
+        <Navbar score={this.state.yourScore}></Navbar>
         <Jumbotron></Jumbotron>
         {
-          this.state.logos.map(logo => (
+          this.state.logos.map((logo,index) => (
             <LogoCard
-              id={logo.id}
-              key={logo.id}
+              id={index}
+              key={index}
               name={logo.name}
               image={logo.image}
               handleClick={this.clicked}
             />
           ))}
-
-        <Footer></Footer>,
+        {/* <Footer></Footer> */}
         </Wrapper>
-
-
+        
     );
   }
 }
+
 
 
 export default App;

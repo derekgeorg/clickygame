@@ -11,7 +11,7 @@ const Navbar = (props) => (
                 You guessed <span id="guessValue"></span>
               </li>
               <li>
-                Score: <span id="yourScore"></span> | Top Score: <span id="topScore"></span>
+                Score: <span id="yourScore">{props.score}</span> | Top Score: <span id="topScore"></span>
               </li>
             </ul>
           </nav>

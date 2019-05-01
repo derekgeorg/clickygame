@@ -5,7 +5,7 @@ import LogoCard from "./components/LogoCard"
 import Wrapper from "./components/Wrapper"
 import Jumbotron from "./components/Jumbotron"
 import Navbar from "./components/NavBar"
-import Footer from "./components/Footer"
+// import Footer from "./components/Footer"
 
 
 class App extends Component {
@@ -22,17 +22,17 @@ class App extends Component {
   // scoring function
   clicked = (id) => {
     console.log(id)
-     console.log(this.state.logos[id].clicked)
-     if(this.state.logos[id].clicked === false){
-       let preShuffledArray = [...this.state.logos]
-       preShuffledArray[id].clicked = true;
-    const shuffled = this.shuffleCards(preShuffledArray);
-    let newScore = this.state.yourScore + 1;
-    this.setState({ yourScore: newScore, logos: shuffled });
-     }else{
-       console.log("Lose")
-     }
-    
+    console.log(this.state.logos[id].clicked)
+    if (this.state.logos[id].clicked === false) {
+      let preShuffledArray = [...this.state.logos]
+      preShuffledArray[id].clicked = true;
+      const shuffled = this.shuffleCards(preShuffledArray);
+      let newScore = this.state.yourScore + 1;
+      this.setState({ yourScore: newScore, logos: shuffled });
+    } else {
+      console.log("Lose")
+    }
+
   }
 
   // check we haven't chosen img id
@@ -50,9 +50,6 @@ class App extends Component {
     return array;
   }
 
-
-
-
   render() {
     return (
 
@@ -60,7 +57,7 @@ class App extends Component {
         <Navbar score={this.state.yourScore}></Navbar>
         <Jumbotron></Jumbotron>
         {
-          this.state.logos.map((logo,index) => (
+          this.state.logos.map((logo, index) => (
             <LogoCard
               id={index}
               key={index}
@@ -69,13 +66,9 @@ class App extends Component {
               handleClick={this.clicked}
             />
           ))}
-        {/* <Footer></Footer> */}
-        </Wrapper>
-        
+      </Wrapper>
     );
   }
 }
-
-
 
 export default App;

@@ -1,0 +1,31 @@
+.navbar li {
+    display: inline-block;
+      padding: 26px 0;
+      width: 33.3%;
+      text-align: center;
+      box-sizing:
+  border-box;
+  color:rgb(255, 255, 255);
+  display:inline-block;
+  font-family:sans-serif;
+  font-size: 19.8px;
+  height: 74px;
+  line-height: 22.77px;
+  list-style-type:disc;
+  padding-bottom: 26px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 26px;
+  text-align: center;
+  text-size-adjust: 100%;
+  white-space: nowrap;
+  width: 293.031px;
+}
+
+.navbar {
+color: #fff;
+    font-size: 20px;
+    z-index: 99;
+    white-space: nowrap;
+    width: 100%;
+}

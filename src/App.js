@@ -1,44 +1,73 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import atomPic from './assets/img/atom.png';
-import mongoPic from './assets/img/mongo.png';
-import nodePic  from './assets/img/nodejs-512.png';
-import reactPic from './assets/img/react.png';
+import logos from "./logos.json";
+import LogoCard from "./components/LogoCard"
+import Wrapper from "./components/Wrapper"
+import Jumbotron from "./components/Jumbotron"
+import Navbar from "./components/NavBar"
+import Footer from "./components/Footer"
 
-function App() {
-  return (
-    <div className="App">
-      <nav className="navbar navbar-dark bg-primary">
-        <ul>
-          <li>
-            Clicky Game
-          </li>
-          <li class>
-            You guessed <span id="guessValue">Value</span>
-          </li>
-          <li>
-            Score: <span id="yourScore">0</span> | Top Score: <span id="topScore">0</span>
-          </li>
-        </ul>
-      </nav>
-      <div className="jumbotron jumbotron-fluid">
-        <h1 className="display-4">Clicky Game!</h1>
-        <p className="lead">Click on an image to earn points, but don't click on any more than once!</p>
-      </div>
-      <main className="container">
-      <div className="imgDiv"><img class="img" src={atomPic} alt="atom logo"></img></div>
-      <div className="imgDiv"><img class="img" src={mongoPic} alt="mongo logo"></img></div>
-      <div className="imgDiv"><img class="img" src={nodePic} alt="node logo"></img></div>
-      <div className="imgDiv"><img class="img" src={reactPic} alt="react logo"></img></div>
-      {/* <div className="imgDiv"><img class="img" src="/assets/img/sketch.png"></img></div> */}
-      </main>
-      <footer className="footer">
-        <div className="bottom">
-        Clicky Game! <img class="footerImg" alt="react" src="assets/img/react.png"></img>
-                </div>
-      </footer>
-    </div>
-  );
+
+class App extends Component {
+  state = {
+    logos,
+    yourScore: 0,
+    topScore: 0,
+    guessValue: "",
+  };
+
+  //Whenever we write a function in ES6, we use the format:
+  // functionName = (paramter or if we don't have a paramter, keep it blank) => { do stuff here}
+  //greatestFunctionEver = () => {this.setState(...)}
+   // scoring function
+  clicked = (id) => {
+    console.log(id)
+    const shuffled = this.shuffleCards(this.state.logos);
+    this.setState({ score: this.state.yourScore + 2, logos: shuffled});
+  }
+
+  // check we haven't chosen img id
+  // if/else has been chose endgame or add to score
+  
+  // end of game reset function
+  // (shuffle)
+  shuffleCards = array => {
+    for (let i = 0; i < array.length; i++) {
+      const random = Math.floor(Math.random() * array.length);
+      let temp = array[i];
+      array[i] = array[random];
+      array[random] = temp;
+    }
+    return array;
+  }
+
+  
+ 
+
+  render() {
+    return (
+
+      <Wrapper>
+        <Navbar></Navbar>
+        <Jumbotron></Jumbotron>
+        {
+          this.state.logos.map(logo => (
+            <LogoCard
+              id={logo.id}
+              key={logo.id}
+              name={logo.name}
+              image={logo.image}
+              handleClick={this.clicked}
+            />
+          ))}
+
+        <Footer></Footer>,
+        </Wrapper>
+
+
+    );
+  }
 }
+
 
 export default App;

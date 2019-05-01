@@ -1,0 +1,26 @@
+[
+{
+    "id": 1,
+    "name": "atom",
+    "image": "./assets/img/atom.png",
+    "clicked": false
+},
+{
+    "id": 2,
+    "name": "mongo",
+    "image": "./assets/img/mongo.png",
+    "clicked": false
+},
+{
+    "id": 3,
+    "name": "node",
+    "image": "./assets/img/nodejs-512.png",
+    "clicked": false
+},
+{
+    "id": 4,
+    "name": "react",
+    "image": "./assets/img/react.png",
+    "clicked": false
+}
+]

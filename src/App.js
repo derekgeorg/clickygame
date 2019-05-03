@@ -28,17 +28,30 @@ class App extends Component {
       preShuffledArray[id].clicked = true;
       const shuffled = this.shuffleCards(preShuffledArray);
       let newScore = this.state.yourScore + 1;
+      if (newScore > this.state.topScore) {
+        this.setState({ topScore: newScore })
+      }
       this.setState({ yourScore: newScore, logos: shuffled });
+      if (this.state.yourScore === 3) {
+        alert("Winner!")
+        this.setState({ yourScore: 0 })
+        this.reset()
+      }
+      
     } else {
-      console.log("Lose")
+      alert("You lose. Game Over.")
+      this.setState({ yourScore: 0 })
+      this.reset()
     }
-
   }
-
   // check we haven't chosen img id
   // if/else has been chose endgame or add to score
 
   // end of game reset function
+  reset = () => {
+   Object.keys(logos).forEach(i => logos[i].clicked = false)
+  }
+
   // (shuffle)
   shuffleCards = array => {
     for (let i = 0; i < array.length; i++) {
@@ -54,7 +67,7 @@ class App extends Component {
     return (
 
       <Wrapper>
-        <Navbar score={this.state.yourScore}></Navbar>
+        <Navbar score={this.state.yourScore} topScore={this.state.topScore}></Navbar>
         <Jumbotron></Jumbotron>
         {
           this.state.logos.map((logo, index) => (
